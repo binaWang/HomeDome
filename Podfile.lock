@@ -1,0 +1,64 @@
+PODS:
+  - IJKMediaFramework (0.1.5)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxSwift (4.5.0)
+  - SnapKit (4.2.0)
+  - SwifterSwift (5.0.0):
+    - SwifterSwift/AppKit (= 5.0.0)
+    - SwifterSwift/CoreGraphics (= 5.0.0)
+    - SwifterSwift/CoreLocation (= 5.0.0)
+    - SwifterSwift/Dispatch (= 5.0.0)
+    - SwifterSwift/Foundation (= 5.0.0)
+    - SwifterSwift/MapKit (= 5.0.0)
+    - SwifterSwift/SpriteKit (= 5.0.0)
+    - SwifterSwift/SwiftStdlib (= 5.0.0)
+    - SwifterSwift/UIKit (= 5.0.0)
+  - SwifterSwift/AppKit (5.0.0)
+  - SwifterSwift/CoreGraphics (5.0.0)
+  - SwifterSwift/CoreLocation (5.0.0)
+  - SwifterSwift/Dispatch (5.0.0)
+  - SwifterSwift/Foundation (5.0.0)
+  - SwifterSwift/MapKit (5.0.0)
+  - SwifterSwift/SpriteKit (5.0.0)
+  - SwifterSwift/SwiftStdlib (5.0.0)
+  - SwifterSwift/UIKit (5.0.0)
+  - Then (2.6.0)
+  - ZFPlayer (4.0.1):
+    - ZFPlayer/Core (= 4.0.1)
+  - ZFPlayer/Core (4.0.1)
+  - ZFPlayer/ijkplayer (4.0.1):
+    - IJKMediaFramework
+    - ZFPlayer/Core
+
+DEPENDENCIES:
+  - RxCocoa (= 4.5.0)
+  - RxSwift
+  - SnapKit (= 4.2.0)
+  - SwifterSwift (= 5.0.0)
+  - Then (= 2.6.0)
+  - ZFPlayer
+  - ZFPlayer/ijkplayer
+
+SPEC REPOS:
+  trunk:
+    - IJKMediaFramework
+    - RxCocoa
+    - RxSwift
+    - SnapKit
+    - SwifterSwift
+    - Then
+    - ZFPlayer
+
+SPEC CHECKSUMS:
+  IJKMediaFramework: f1119f6324c96bc4654f3045a5beaa95ba0596c0
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwifterSwift: 96f90594b370802f01647c2b1229c74a84ffafee
+  Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
+  ZFPlayer: f88787c815f7b0801279c42f131a89e2823e669e
+
+PODFILE CHECKSUM: 0ab84daabcbe6370813409d45d5ca7c8e137f1ff
+
+COCOAPODS: 1.9.3
