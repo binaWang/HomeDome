@@ -9,12 +9,11 @@
 import UIKit
 
 class HomeVideoTableViewCell: UITableViewCell,HomeVideoCellStands {
-    var delegate: TableViewPlayerCellDelegate?
-    
+    var delegate: HomeTotalCellDelegate?
 
+    var index : IndexPath?
     
-    
-    var inset: CGFloat = 30
+    var inset: CGFloat = 16
     
     private var videoImage:UIImageView = UIImageView()
     
@@ -31,7 +30,7 @@ class HomeVideoTableViewCell: UITableViewCell,HomeVideoCellStands {
         layoutViews()
         
     }
-    func setData(_ data: HomeBaseCellData) {
+    func setData(_ data: HomeBaseCellData, index: IndexPath) {
         if let mode = data as? HomeVideoCellStandsData{
             labelsView.setDatas(data: mode)
             funcView.setData(data: mode)
@@ -42,24 +41,33 @@ class HomeVideoTableViewCell: UITableViewCell,HomeVideoCellStands {
         contentView.addSubview(labelsView)
         contentView.addSubview(videoImage)
         contentView.addSubview(funcView)
+        videoImage.backgroundColor = UIColor.random
+        videoImage.tag = HomeTableViewController.kPlayerViewTag
+        videoImage.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(playClick))
+        videoImage.addGestureRecognizer(tap)
     }
-    
+    @objc private func playClick(){
+        if let index  = self.index{
+            self.delegate?.playVideoAt(index: index)
+        }
+    }
     func layoutViews() {
         labelsView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(0)
+            make.top.equalToSuperview().offset(24)
             make.leading.trailing.equalToSuperview().inset(inset)
         }
         videoImage.snp.makeConstraints { (make) in
             make.top.equalTo(labelsView.snp.bottom).offset(inset)
             make.leading.equalTo(labelsView.snp.leading)
             make.trailing.equalTo(labelsView.snp.trailing)
-            make.height.equalTo(videoImage.snp.width).multipliedBy(0.45)
+            make.height.equalTo(videoImage.snp.width).multipliedBy(193.0/343.0)
         }
         funcView.snp.makeConstraints { (make) in
-            make.top.equalTo(videoImage.snp.bottom).offset(10)
+            make.top.equalTo(videoImage.snp.bottom).offset(12)
             make.leading.equalTo(labelsView.snp.leading)
             make.trailing.equalTo(labelsView.snp.trailing)
-            make.bottom.equalToSuperview().inset(10).priorityLow()
+            make.bottom.equalToSuperview().offset(-24).priorityLow()
         }
 
     }

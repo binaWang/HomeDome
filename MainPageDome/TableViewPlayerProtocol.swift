@@ -8,21 +8,21 @@
 
 import UIKit
 import ZFPlayer
-protocol TableViewPlayerCellDelegate : UITableViewCell{
-    func playVideoAt(indexPath:IndexPath,assetURL:URL,title:String,placeHoldImage:String)
-}
 
 protocol TableViewPlayerProtocol : UITableViewController{
     static var kPlayerViewTag :Int {get}
 
     var player:ZFPlayerController{get set}
     var controlView:ZFPlayerControlView{get set}
-    func initPlayer()
-    func initControlView()
+    func initPlayerView()
     func playTheVideoAt(indexPath: IndexPath, animated:Bool,assetURL:URL,title:String,placeHoldImage:String)
 }
 extension TableViewPlayerProtocol where Self : UITableViewController{
-    
+    func initPlayerView(){
+        initControlView()
+        initPlayer()
+    }
+
     func initPlayer(){
         let playerManager =  ZFIJKPlayerManager()
         
@@ -44,12 +44,7 @@ extension TableViewPlayerProtocol where Self : UITableViewController{
         controlView.prepareShowLoading = true
         controlView.prepareShowControlView = true
     }
-    func playTheVideoAt(indexPath: IndexPath, animated:Bool,assetURL:URL,title:String,placeHoldImage:String){
-//        if player.playingIndexPath != indexPath{
-//            player.stopCurrentPlayingCell()
-//        }
-//        if
-        
+    func playTheVideoAt(indexPath: IndexPath, animated:Bool,assetURL:URL,title:String,placeHoldImage:String){        
         if animated {
             player.playTheIndexPath(indexPath, assetURL: assetURL, scrollPosition: .top, animated: true)
             

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwifterSwift
 import SnapKit
 protocol HomeImageData {
     var image:String? {get}
@@ -18,21 +19,21 @@ protocol HomeImageVIewsProtocol : UITableViewCell {
 }
 
 extension HomeImageVIewsProtocol where Self : UITableViewCell{
-//    func addHomeImageVIewsView(top:SnapKit.ConstraintItem,offset:CGFloat)-> SnapKit.ConstraintItem{
-//        contentView.addSubview(imageViews)
-//        imageViews.snp.makeConstraints { (make) in
-//            make.leading.equalToSuperview().offset(0)
-//            make.trailing.equalToSuperview().offset(0)
-//            make.top.equalTo(top).offset(offset)
-//            make.bottom.equalToSuperview().offset(0)
-//        }
-//        return imageViews.snp.bottom
-//    }
 
 }
 
 protocol HomeImageVIewsActionDelegate:NSObjectProtocol  {
     func didTapImages(index: Int, model:HomeImageData)
+}
+extension HomeImageVIewsActionDelegate where Self : HomeImageCellStands {
+    func didTapImages(index: Int, model:HomeImageData){
+        self.delegate?.didTapImageView(index: index, model: model)
+    }
+}
+extension HomeImageVIewsActionDelegate where Self : HomeVideoCellStands {
+    func didTapImages(index: Int, model:HomeImageData){
+        self.delegate?.didTapImageView(index: index, model: model)
+    }
 }
 
 class HomeImageVIews: UIView {
@@ -102,6 +103,9 @@ class HomeImageVIews: UIView {
             for _ in 0..<layout.imageHorizontalCount {
                 let imageView = UIImageView()
                 imageView.contentMode = .scaleToFill
+                imageView.isUserInteractionEnabled = true
+                imageView.cornerRadius = 2
+                imageView.backgroundColor = UIColor.random
                 stack.addArrangedSubview(imageView)
                 imageViews.append(imageView)
             }
@@ -155,7 +159,7 @@ extension HomeImageVIews{
             var height : CGFloat
             switch self {
             case .single:
-                height = 0.45
+                height = 193.0/343.0
             case .double:
                 height = 1
             case .three:
@@ -172,7 +176,7 @@ extension HomeImageVIews{
         static let verticalMax : Int = 3
         
         /// 元素间距离
-        var imageMargin: CGFloat = 4
+        var imageMargin: CGFloat = 5
         
         /// 实际横向图片数量
         private(set) var imageHorizontalCount: Int = 0

@@ -15,7 +15,6 @@ protocol HomeVideoCellStandsData :HomeBaseCellData,HomeLabelsViewDatas,HomeFuncV
 
 protocol HomeVideoCellStands:HomeBaseCellStands,HomeLabelsViewProtocol ,HomeFuncViewProtocol {
     var inset:CGFloat {get}
-    var delegate: TableViewPlayerCellDelegate?{get set}
 }
 extension HomeVideoCellStands where Self : UITableViewCell{
 

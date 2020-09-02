@@ -20,6 +20,13 @@
 		7787C6EA24F50BCC000B6307 /* HomeFuncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787C6E924F50BCC000B6307 /* HomeFuncView.swift */; };
 		7787C6EC24F50FFF000B6307 /* HomeImageCellStands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787C6EB24F50FFF000B6307 /* HomeImageCellStands.swift */; };
 		77AF791324F8FB8A00EEF372 /* HomeBaseCellStands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AF791224F8FB8A00EEF372 /* HomeBaseCellStands.swift */; };
+		77C5E4A124FF372400733D40 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C5E4A024FF372400733D40 /* Colors.swift */; };
+		77C5E4A324FF37B200733D40 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C5E4A224FF37B200733D40 /* Text.swift */; };
+		77C5E4AB24FF3BE000733D40 /* ActiveLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C5E4A524FF3BE000733D40 /* ActiveLabel.swift */; };
+		77C5E4AC24FF3BE000733D40 /* RegexParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C5E4A624FF3BE000733D40 /* RegexParser.swift */; };
+		77C5E4AD24FF3BE000733D40 /* StringTrimExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C5E4A724FF3BE000733D40 /* StringTrimExtension.swift */; };
+		77C5E4AE24FF3BE000733D40 /* ActiveBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C5E4A824FF3BE000733D40 /* ActiveBuilder.swift */; };
+		77C5E4AF24FF3BE000733D40 /* ActiveType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C5E4A924FF3BE000733D40 /* ActiveType.swift */; };
 		77DDE2A524F0382800F33D61 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DDE2A424F0382800F33D61 /* NewViewController.swift */; };
 		77DF9F1D24ED22CC00DDFD15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DF9F1C24ED22CC00DDFD15 /* AppDelegate.swift */; };
 		77DF9F1F24ED22CC00DDFD15 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DF9F1E24ED22CC00DDFD15 /* SceneDelegate.swift */; };
@@ -72,6 +79,14 @@
 		7787C6E924F50BCC000B6307 /* HomeFuncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFuncView.swift; sourceTree = "<group>"; };
 		7787C6EB24F50FFF000B6307 /* HomeImageCellStands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageCellStands.swift; sourceTree = "<group>"; };
 		77AF791224F8FB8A00EEF372 /* HomeBaseCellStands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseCellStands.swift; sourceTree = "<group>"; };
+		77C5E4A024FF372400733D40 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		77C5E4A224FF37B200733D40 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		77C5E4A524FF3BE000733D40 /* ActiveLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveLabel.swift; sourceTree = "<group>"; };
+		77C5E4A624FF3BE000733D40 /* RegexParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegexParser.swift; sourceTree = "<group>"; };
+		77C5E4A724FF3BE000733D40 /* StringTrimExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringTrimExtension.swift; sourceTree = "<group>"; };
+		77C5E4A824FF3BE000733D40 /* ActiveBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveBuilder.swift; sourceTree = "<group>"; };
+		77C5E4A924FF3BE000733D40 /* ActiveType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActiveType.swift; sourceTree = "<group>"; };
+		77C5E4AA24FF3BE000733D40 /* ActiveLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveLabel.h; sourceTree = "<group>"; };
 		77DDE2A424F0382800F33D61 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		77DF9F1924ED22CC00DDFD15 /* MainPageDome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MainPageDome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DF9F1C24ED22CC00DDFD15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +158,19 @@
 			path = HomeViews;
 			sourceTree = "<group>";
 		};
+		77C5E4A424FF3BE000733D40 /* ActiveLabel */ = {
+			isa = PBXGroup;
+			children = (
+				77C5E4A524FF3BE000733D40 /* ActiveLabel.swift */,
+				77C5E4A624FF3BE000733D40 /* RegexParser.swift */,
+				77C5E4A724FF3BE000733D40 /* StringTrimExtension.swift */,
+				77C5E4A824FF3BE000733D40 /* ActiveBuilder.swift */,
+				77C5E4A924FF3BE000733D40 /* ActiveType.swift */,
+				77C5E4AA24FF3BE000733D40 /* ActiveLabel.h */,
+			);
+			path = ActiveLabel;
+			sourceTree = "<group>";
+		};
 		77DF9F1024ED22CC00DDFD15 = {
 			isa = PBXGroup;
 			children = (
@@ -175,10 +203,13 @@
 				77DDE2A424F0382800F33D61 /* NewViewController.swift */,
 				7787C6E124F49F47000B6307 /* HomeTableViewController.swift */,
 				7705918124FE4F0A00F6D056 /* TableViewPlayerProtocol.swift */,
+				77C5E4A024FF372400733D40 /* Colors.swift */,
+				77C5E4A224FF37B200733D40 /* Text.swift */,
 				77AF791124F8FB5200EEF372 /* HomeViews */,
 				77F50CD024EE67300010D978 /* PageMenu.swift */,
 				77F50CD424EF67460010D978 /* PageMenuItemView.swift */,
 				77F50CD224EE878B0010D978 /* PageMenuScrollView.swift */,
+				77C5E4A424FF3BE000733D40 /* ActiveLabel */,
 				77F50CBA24EE49FD0010D978 /* PageMenu */,
 				77DF9F2224ED22CC00DDFD15 /* Main.storyboard */,
 				77DF9F2524ED22CE00DDFD15 /* Assets.xcassets */,
@@ -519,21 +550,28 @@
 				7787C6E424F49FD8000B6307 /* HomeUserView.swift in Sources */,
 				77F50CCD24EE51020010D978 /* CAPSPageMenu.m in Sources */,
 				77F50CD324EE878B0010D978 /* PageMenuScrollView.swift in Sources */,
+				77C5E4AD24FF3BE000733D40 /* StringTrimExtension.swift in Sources */,
+				77C5E4AE24FF3BE000733D40 /* ActiveBuilder.swift in Sources */,
 				7787C6E824F4A5DD000B6307 /* HomeImageVIews.swift in Sources */,
 				77F50CD124EE67300010D978 /* PageMenu.swift in Sources */,
 				7787C6EC24F50FFF000B6307 /* HomeImageCellStands.swift in Sources */,
 				7787C6E224F49F47000B6307 /* HomeTableViewController.swift in Sources */,
 				7787C6E624F4A407000B6307 /* HomeLabelsView.swift in Sources */,
 				77F50CD524EF67460010D978 /* PageMenuItemView.swift in Sources */,
+				77C5E4A124FF372400733D40 /* Colors.swift in Sources */,
 				77DF9F1D24ED22CC00DDFD15 /* AppDelegate.swift in Sources */,
 				77AF791324F8FB8A00EEF372 /* HomeBaseCellStands.swift in Sources */,
 				77DDE2A524F0382800F33D61 /* NewViewController.swift in Sources */,
+				77C5E4AF24FF3BE000733D40 /* ActiveType.swift in Sources */,
+				77C5E4AB24FF3BE000733D40 /* ActiveLabel.swift in Sources */,
 				7705918224FE4F0A00F6D056 /* TableViewPlayerProtocol.swift in Sources */,
 				7705918424FE569700F6D056 /* HomeVideoTableViewCell.swift in Sources */,
 				7705918624FE58A100F6D056 /* HomeVideoCellStands.swift in Sources */,
 				7787C6EA24F50BCC000B6307 /* HomeFuncView.swift in Sources */,
 				77694D9624FC91E5004A299D /* HomeSingleColumnViewCell.swift in Sources */,
+				77C5E4AC24FF3BE000733D40 /* RegexParser.swift in Sources */,
 				77F50CBC24EE4A250010D978 /* String+Extension.swift in Sources */,
+				77C5E4A324FF37B200733D40 /* Text.swift in Sources */,
 				77DF9F1F24ED22CC00DDFD15 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

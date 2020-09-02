@@ -11,12 +11,12 @@ protocol HomeImageCellStandsData :HomeBaseCellData,HomeLabelsViewDatas,HomeFuncV
     var imageDatas:[HomeImageData]{get}
 }
 
-protocol HomeImageCellStands:HomeBaseCellStands,HomeLabelsViewProtocol ,HomeFuncViewProtocol ,HomeImageVIewsProtocol{
+protocol HomeImageCellStands:HomeBaseCellStands,HomeLabelsViewProtocol ,HomeFuncViewProtocol ,HomeImageVIewsProtocol,HomeLabelsViewDelegate,HomeImageVIewsActionDelegate,HomeFuncViewDelegate{
     var inset:CGFloat {get}
 }
 
 extension HomeImageCellStands where Self : UITableViewCell{
-    func setData(_ data: HomeBaseCellData) {
+    func setData(_ data: HomeBaseCellData, index: IndexPath) {
         if let model =  data as? HomeImageCellStandsData{
             labelsView.setDatas(data: model)
             imageViews.setData(data: model.imageDatas)
@@ -28,22 +28,25 @@ extension HomeImageCellStands where Self : UITableViewCell{
         contentView.addSubview(labelsView)
         contentView.addSubview(imageViews)
         contentView.addSubview(funcView)
+        labelsView.delegate = self 
+        imageViews.delegate = self
+        funcView.delegate = self
     }
     func layoutViews(){
         labelsView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(0)
+            make.top.equalToSuperview().offset(24)
             make.leading.trailing.equalToSuperview().inset(inset)
         }
         imageViews.snp.makeConstraints { (make) in
-            make.top.equalTo(labelsView.snp.bottom).offset(inset)
+            make.top.equalTo(labelsView.snp.bottom).offset(12)
             make.leading.equalTo(labelsView.snp.leading)
             make.trailing.equalTo(labelsView.snp.trailing)
         }
         funcView.snp.makeConstraints { (make) in
-            make.top.equalTo(imageViews.snp.bottom).offset(10)
+            make.top.equalTo(imageViews.snp.bottom).offset(14)
             make.leading.equalTo(labelsView.snp.leading)
             make.trailing.equalTo(labelsView.snp.trailing)
-            make.bottom.equalToSuperview().inset(10).priorityLow()
+            make.bottom.equalToSuperview().offset(-24).priorityLow()
         }
 
     }

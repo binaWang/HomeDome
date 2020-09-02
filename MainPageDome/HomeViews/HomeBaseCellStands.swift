@@ -14,7 +14,8 @@ protocol HomeBaseCellData {
 }
 
 protocol HomeBaseCellStands:UITableViewCell {
-    func setData(_ data: HomeBaseCellData)
+    var delegate : HomeTotalCellDelegate?{get set}
+    func setData(_ data: HomeBaseCellData,index:IndexPath)
     func addViews()
     func layoutViews()
 }
@@ -23,6 +24,12 @@ protocol HomeBaseCellActions: NSObjectProtocol {
 }
 protocol HomeTotalCellData:HomeImageCellStandsData,HomeVideoCellStandsData {
     
+}
+protocol HomeTotalCellDelegate : NSObjectProtocol {
+    func didTapTagLabel(text:String)
+    func didTapImageView(index:Int,model:HomeImageData)
+    func didTapFuncView(type:HomeFuncView.TapType)
+    func playVideoAt(index:IndexPath )
 }
 extension HomeTotalCellData{
 

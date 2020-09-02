@@ -9,7 +9,11 @@
 import UIKit
 
 class HomeSingleColumnViewCell: UITableViewCell ,HomeImageCellStands{
-    var inset: CGFloat = 30
+    
+    var delegate: HomeTotalCellDelegate?
+    
+    
+    var inset: CGFloat = 16
     
     var column:HomeImageVIews.Column {
         get{
@@ -29,7 +33,6 @@ class HomeSingleColumnViewCell: UITableViewCell ,HomeImageCellStands{
     
         addViews()
         layoutViews()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -37,7 +40,6 @@ class HomeSingleColumnViewCell: UITableViewCell ,HomeImageCellStands{
     }
     
 }
-
 class  HomeDoubleColumnImageCell: HomeSingleColumnViewCell {
     override var column:HomeImageVIews.Column {
             return .double
@@ -51,3 +53,4 @@ class  HomeThreeColumnImageCell: HomeSingleColumnViewCell {
     }
 
 }
+

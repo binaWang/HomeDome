@@ -23,6 +23,7 @@ struct HomeDataModel {
     var imageArray:[Images] = []
     var url : String = ""
     var videoimage : String = ""
+    var time:String = ""
 }
 extension HomeDataModel.Images:HomeImageData{
     var image: String? {
@@ -32,6 +33,10 @@ extension HomeDataModel.Images:HomeImageData{
     
 }
 extension HomeDataModel:HomeTotalCellData{
+    var timeString: String? {
+        time
+    }
+    
     var videoImageStr: String {
         videoimage
     }
@@ -66,13 +71,10 @@ extension HomeDataModel:HomeTotalCellData{
 }
 
 
-class HomeTableViewController: UITableViewController {
+class HomeTableViewController: UITableViewController ,TableViewPlayerProtocol{
     var dataSource  :  [HomeBaseCellData] = []
     static let kPlayerViewTag = 10086
-    lazy var controlView : ZFPlayerControlView = ZFPlayerControlView().then{
-        $0.prepareShowLoading = true
-        $0.prepareShowControlView = true
-    }
+    lazy var controlView : ZFPlayerControlView = ZFPlayerControlView()
     var player :  ZFPlayerController = ZFPlayerController()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,44 +91,31 @@ class HomeTableViewController: UITableViewController {
         } else {
             self.automaticallyAdjustsScrollViewInsets = false;
         }
-        for _  in 0...10{
+        for i  in 0...10{
             var model =  HomeDataModel()
-            model.title = String.random(ofLength: 30)
-            model.content = String.random(ofLength: 50)
+            model.title = String.random(ofLength: 89)
+            model.content = String.random(ofLength: 300)
             model.collection = "\(Int.random(in: 0...999))"
             model.like = "\(Int.random(in: 0...999))"
             model.read = "\(Int.random(in: 0...999))"
+            model.time = "\(Int.random(in: 0...10))分钟前"
             var images:[HomeDataModel.Images] = []
             for _ in 0...Int.random(in: 0...9){
                 var image =  HomeDataModel.Images()
                 image.str = "\(Int.random(in: 0...7))"
                 images.append(image)
             }
-            model.url = "wewe"
+            if i % 3 == 0{
+                model.url = "wewe"
+            }
             model.imageArray = images
             dataSource.append(model)
         }
 
         print(dataSource)
-        
+        initPlayerView()
     }
 
-    func initPlayer(){
-        let playerManager =  ZFIJKPlayerManager()
-        
-        player = ZFPlayerController(scrollView: tableView, playerManager: playerManager, containerViewTag: HomeTableViewController.kPlayerViewTag)
-        player.controlView = controlView
-        player.shouldAutoPlay = false
-        player.playerDisapperaPercent = 1.0
-        
-        player.orientationWillChange = {(player,isFullScreen) in
-            ///
-        }
-        player.playerDidToEnd = {[weak self]asset in
-            self?.player.stopCurrentPlayingCell()
-        }
-        
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.player.isViewControllerDisappear = false
@@ -134,35 +123,6 @@ class HomeTableViewController: UITableViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.player.isViewControllerDisappear = true
-    }
-
-    func playTheVideoAt(indexPath: IndexPath,scrollAnimated animated:Bool){
-//        let model = dataSource[indexPath.row]
-        let title = ""
-        let url =  URL(fileURLWithPath: "")
-        if animated {
-            player.playTheIndexPath(indexPath, assetURL: url, scrollPosition: .top, animated: true)
-            
-        }else{
-            player.playTheIndexPath(indexPath, assetURL: url)
-        }
-        controlView.showTitle(title, coverURLString: "url", fullScreenMode: .landscape)
-    }
-}
-// MARK: - scrollView view delegate
-extension HomeTableViewController{
-    
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        scrollView.zf_scrollViewDidEndDecelerating()
-    }
-    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        scrollView.zf_scrollViewDidEndDraggingWillDecelerate(decelerate)
-    }
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.zf_scrollViewDidScroll()
-    }
-    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        scrollView.zf_scrollViewWillBeginDragging()
     }
 
 }
@@ -185,20 +145,40 @@ extension HomeTableViewController{
         guard let cell = tableView.dequeueReusableCell(withClass: classType) as? HomeBaseCellStands else {
             fatalError("Couldn't find UITableViewCell ")
         }
-        print(cell)
-
-        cell.setData(model)
+        cell.setData(model, index: indexPath)
+        cell.delegate  = self
         return cell
     
     }
 }
 extension HomeTableViewController{
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.player.playingIndexPath != indexPath{
-            player.stopCurrentPlayingCell()
+        if let model  = dataSource[indexPath.row] as? HomeTotalCellData,
+            model.videoURL != "",
+            let url = URL(string: model.videoURL){
+            playTheVideoAt(indexPath: indexPath, animated: false, assetURL: url, title: "", placeHoldImage: "")
+
         }
-        if !self.player.currentPlayerManager.isPlaying{
-            playTheVideoAt(indexPath: indexPath, scrollAnimated: false)
-        }
+        
     }
+}
+extension HomeTableViewController: HomeTotalCellDelegate{
+    func playVideoAt(index: IndexPath) {
+
+    }
+    
+    func didTapTagLabel(text: String) {
+        
+    }
+    
+    func didTapImageView(index: Int, model: HomeImageData) {
+        
+    }
+    
+    func didTapFuncView(type: HomeFuncView.TapType) {
+        
+    }
+    
+    
+    
 }

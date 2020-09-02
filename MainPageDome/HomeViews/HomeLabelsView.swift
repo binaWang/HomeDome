@@ -25,17 +25,32 @@ extension HomeLabelsViewProtocol where Self : UITableViewCell{
 
 }
 
+protocol HomeLabelsViewDelegate: NSObjectProtocol {
+    func didTapLabel(text:String)
+}
+
+extension HomeLabelsViewDelegate   where Self :HomeImageCellStands{
+    func didTapLabel(text:String){
+        self.delegate?.didTapTagLabel(text: text)
+    }
+}
 
 
 class HomeLabelsView: UIView {
-    lazy private var titleLabel : UILabel = UILabel().then{
-        $0.textColor = UIColor(hexString: "#333333")
-        $0.font = UIFont.systemFont(ofSize: 18)
+    
+    weak var delegate : HomeLabelsViewDelegate?
+
+   private lazy  var titleLabel : ActiveLabel = ActiveLabel().then{
+        $0.textColor = MosCommonColor.app_assist_dark_black
+        $0.font = UIFont.vwText_Regular(ofSize: 18)
+        $0.numberOfLines = 2
     }
-    lazy private var contentLabel : UILabel = UILabel().then{
-        $0.textColor = UIColor.random()
+    private lazy var contentLabel : ActiveLabel = ActiveLabel().then{
+        $0.textColor = MosCommonColor.app_assist_content_text
+        $0.font = UIFont.svwPingFangSC_Medium(ofSize:14)
+        
         $0.font = UIFont.systemFont(ofSize: 14)
-        $0.numberOfLines = 0
+        $0.numberOfLines = 3
     }
     
     override init(frame: CGRect) {
@@ -49,7 +64,15 @@ class HomeLabelsView: UIView {
     }
     
     func setDatas( data:HomeLabelsViewDatas){
-        titleLabel.text = data.titleText
+        let pattern = "#点位"
+        let customType = ActiveType.custom(pattern: pattern)
+        titleLabel.enabledTypes = [customType]
+        titleLabel.text = pattern +  (data.titleText ?? "")
+        titleLabel.customColor[customType] =  MosCommonColor.app_main_blue
+        titleLabel.handleCustomTap(for: customType) {[weak self] (str) in
+            self?.delegate?.didTapLabel(text: str)
+        }
+
         contentLabel.text = data.contentText
     }
     private func configLabels(){
@@ -63,7 +86,7 @@ class HomeLabelsView: UIView {
         contentLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(titleLabel.snp.leading)
             make.trailing.equalTo(titleLabel.snp.trailing)
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
             make.bottom.equalToSuperview().offset(0)
         }
 
