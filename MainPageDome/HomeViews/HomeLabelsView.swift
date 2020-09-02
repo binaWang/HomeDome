@@ -29,7 +29,7 @@ extension HomeLabelsViewProtocol where Self : UITableViewCell{
 
 class HomeLabelsView: UIView {
     lazy private var titleLabel : UILabel = UILabel().then{
-        $0.textColor = UIColor.random()
+        $0.textColor = UIColor(hexString: "#333333")
         $0.font = UIFont.systemFont(ofSize: 18)
     }
     lazy private var contentLabel : UILabel = UILabel().then{

@@ -1,5 +1,5 @@
 //
-//  HomeTableViewCell.swift
+//  HomeSingleColumnViewCell.swift
 //  MainPageDome
 //
 //  Created by Wang, bin on 2020/8/31.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class HomeTableViewCell: UITableViewCell ,HomeCellStands{
-    
+class HomeSingleColumnViewCell: UITableViewCell ,HomeImageCellStands{
+    var inset: CGFloat = 30
     
     var column:HomeImageVIews.Column {
         get{
@@ -17,7 +17,7 @@ class HomeTableViewCell: UITableViewCell ,HomeCellStands{
         }
     }
     
-    lazy var imageViews: HomeImageVIews = HomeImageVIews(maxWidth: kScreenWith  - 60, colum: column)
+    lazy var imageViews: HomeImageVIews = HomeImageVIews(maxWidth: kScreenWith  -  inset * 2, colum: column)
 
     lazy var labelsView: HomeLabelsView =  HomeLabelsView()
     
@@ -38,14 +38,14 @@ class HomeTableViewCell: UITableViewCell ,HomeCellStands{
     
 }
 
-class  HomeDoubleColumnImageCell: HomeTableViewCell {
+class  HomeDoubleColumnImageCell: HomeSingleColumnViewCell {
     override var column:HomeImageVIews.Column {
             return .double
     }
 
 }
 
-class  HomeThreeColumnImageCell: HomeTableViewCell {
+class  HomeThreeColumnImageCell: HomeSingleColumnViewCell {
     override var column:HomeImageVIews.Column {
             return .three
     }

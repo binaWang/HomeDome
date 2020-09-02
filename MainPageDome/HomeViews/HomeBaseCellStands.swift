@@ -21,3 +21,22 @@ protocol HomeBaseCellStands:UITableViewCell {
 protocol HomeBaseCellActions: NSObjectProtocol {
     
 }
+protocol HomeTotalCellData:HomeImageCellStandsData,HomeVideoCellStandsData {
+    
+}
+extension HomeTotalCellData{
+
+    func cellType()->HomeBaseCellStands.Type{
+        if self.videoURL != ""{
+            return HomeVideoTableViewCell.self
+        }
+        switch self.imageDatas.count {
+        case 1:
+            return HomeSingleColumnViewCell.self
+        case 2,4:
+            return HomeDoubleColumnImageCell.self
+        default:
+            return HomeThreeColumnImageCell.self
+        }
+    }
+}

@@ -21,6 +21,8 @@ struct HomeDataModel {
     var collection:String = ""
     var like:String = ""
     var imageArray:[Images] = []
+    var url : String = ""
+    var videoimage : String = ""
 }
 extension HomeDataModel.Images:HomeImageData{
     var image: String? {
@@ -29,9 +31,14 @@ extension HomeDataModel.Images:HomeImageData{
     
     
 }
-extension HomeDataModel:HomeCellStandsData{
-
-
+extension HomeDataModel:HomeTotalCellData{
+    var videoImageStr: String {
+        videoimage
+    }
+    
+    var videoURL: String {
+        url
+    }
     
     var imageDatas: [HomeImageData] {
         return imageArray
@@ -61,15 +68,27 @@ extension HomeDataModel:HomeCellStandsData{
 
 class HomeTableViewController: UITableViewController {
     var dataSource  :  [HomeBaseCellData] = []
-//    var configs :HomeTableViewControllerConfig = HomeTableViewControllerConfig()
+    static let kPlayerViewTag = 10086
+    lazy var controlView : ZFPlayerControlView = ZFPlayerControlView().then{
+        $0.prepareShowLoading = true
+        $0.prepareShowControlView = true
+    }
     var player :  ZFPlayerController = ZFPlayerController()
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 50
+        tableView.estimatedSectionFooterHeight = 0;
+        tableView.estimatedSectionHeaderHeight = 0;
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.register(cellWithClass: HomeTableViewCell.self)
+        tableView.register(cellWithClass: HomeVideoTableViewCell.self)
+        tableView.register(cellWithClass: HomeSingleColumnViewCell.self)
         tableView.register(cellWithClass: HomeDoubleColumnImageCell.self)
         tableView.register(cellWithClass: HomeThreeColumnImageCell.self)
+        if #available(iOS 11.0, * ){
+            tableView.contentInsetAdjustmentBehavior = .never
+        } else {
+            self.automaticallyAdjustsScrollViewInsets = false;
+        }
         for _  in 0...10{
             var model =  HomeDataModel()
             model.title = String.random(ofLength: 30)
@@ -83,6 +102,7 @@ class HomeTableViewController: UITableViewController {
                 image.str = "\(Int.random(in: 0...7))"
                 images.append(image)
             }
+            model.url = "wewe"
             model.imageArray = images
             dataSource.append(model)
         }
@@ -92,11 +112,62 @@ class HomeTableViewController: UITableViewController {
     }
 
     func initPlayer(){
-        let playerManager = 
-        player
+        let playerManager =  ZFIJKPlayerManager()
+        
+        player = ZFPlayerController(scrollView: tableView, playerManager: playerManager, containerViewTag: HomeTableViewController.kPlayerViewTag)
+        player.controlView = controlView
+        player.shouldAutoPlay = false
+        player.playerDisapperaPercent = 1.0
+        
+        player.orientationWillChange = {(player,isFullScreen) in
+            ///
+        }
+        player.playerDidToEnd = {[weak self]asset in
+            self?.player.stopCurrentPlayingCell()
+        }
+        
     }
-    // MARK: - Table view data source
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.player.isViewControllerDisappear = false
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.player.isViewControllerDisappear = true
+    }
 
+    func playTheVideoAt(indexPath: IndexPath,scrollAnimated animated:Bool){
+//        let model = dataSource[indexPath.row]
+        let title = ""
+        let url =  URL(fileURLWithPath: "")
+        if animated {
+            player.playTheIndexPath(indexPath, assetURL: url, scrollPosition: .top, animated: true)
+            
+        }else{
+            player.playTheIndexPath(indexPath, assetURL: url)
+        }
+        controlView.showTitle(title, coverURLString: "url", fullScreenMode: .landscape)
+    }
+}
+// MARK: - scrollView view delegate
+extension HomeTableViewController{
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        scrollView.zf_scrollViewDidEndDecelerating()
+    }
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        scrollView.zf_scrollViewDidEndDraggingWillDecelerate(decelerate)
+    }
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scrollView.zf_scrollViewDidScroll()
+    }
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        scrollView.zf_scrollViewWillBeginDragging()
+    }
+
+}
+// MARK: - Table view data source
+extension HomeTableViewController{
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -120,50 +191,14 @@ class HomeTableViewController: UITableViewController {
         return cell
     
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+}
+extension HomeTableViewController{
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if self.player.playingIndexPath != indexPath{
+            player.stopCurrentPlayingCell()
+        }
+        if !self.player.currentPlayerManager.isPlaying{
+            playTheVideoAt(indexPath: indexPath, scrollAnimated: false)
+        }
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

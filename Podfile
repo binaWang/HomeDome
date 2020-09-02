@@ -13,7 +13,7 @@ target 'MainPageDome' do
     pod 'ZFPlayer'
     pod 'ZFPlayer/ijkplayer'
   # Pods for MainPageDome
-
+    pod 'ZFPlayer/ControlView'
   target 'MainPageDomeTests' do
     inherit! :search_paths
     # Pods for testing

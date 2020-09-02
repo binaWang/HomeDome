@@ -9,17 +9,17 @@
 /* Begin PBXBuildFile section */
 		13E9AB2B9608EE515788EB15 /* Pods_MainPageDome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE6882D76F4AB8A0BF64737 /* Pods_MainPageDome.framework */; };
 		543D66897AD92B252546A127 /* Pods_MainPageDome_MainPageDomeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B313ABC2369765B0BBDD19 /* Pods_MainPageDome_MainPageDomeUITests.framework */; };
-		77694D9624FC91E5004A299D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77694D9524FC91E5004A299D /* HomeTableViewCell.swift */; };
-		778373FC24FCD3AF00440BAA /* SVWImageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778373FB24FCD3AF00440BAA /* SVWImageViews.swift */; };
-		778373FE24FCF87600440BAA /* HomeNewImageViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 778373FD24FCF87600440BAA /* HomeNewImageViews.swift */; };
+		7705918224FE4F0A00F6D056 /* TableViewPlayerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705918124FE4F0A00F6D056 /* TableViewPlayerProtocol.swift */; };
+		7705918424FE569700F6D056 /* HomeVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705918324FE569700F6D056 /* HomeVideoTableViewCell.swift */; };
+		7705918624FE58A100F6D056 /* HomeVideoCellStands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7705918524FE58A100F6D056 /* HomeVideoCellStands.swift */; };
+		77694D9624FC91E5004A299D /* HomeSingleColumnViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77694D9524FC91E5004A299D /* HomeSingleColumnViewCell.swift */; };
 		7787C6E224F49F47000B6307 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787C6E124F49F47000B6307 /* HomeTableViewController.swift */; };
 		7787C6E424F49FD8000B6307 /* HomeUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787C6E324F49FD8000B6307 /* HomeUserView.swift */; };
 		7787C6E624F4A407000B6307 /* HomeLabelsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787C6E524F4A407000B6307 /* HomeLabelsView.swift */; };
 		7787C6E824F4A5DD000B6307 /* HomeImageVIews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787C6E724F4A5DD000B6307 /* HomeImageVIews.swift */; };
 		7787C6EA24F50BCC000B6307 /* HomeFuncView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787C6E924F50BCC000B6307 /* HomeFuncView.swift */; };
-		7787C6EC24F50FFF000B6307 /* HomeCellStands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787C6EB24F50FFF000B6307 /* HomeCellStands.swift */; };
+		7787C6EC24F50FFF000B6307 /* HomeImageCellStands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7787C6EB24F50FFF000B6307 /* HomeImageCellStands.swift */; };
 		77AF791324F8FB8A00EEF372 /* HomeBaseCellStands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77AF791224F8FB8A00EEF372 /* HomeBaseCellStands.swift */; };
-		77B85F3D24FDF85200976C93 /* HomeImageVIewsDome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77B85F3C24FDF85200976C93 /* HomeImageVIewsDome.swift */; };
 		77DDE2A524F0382800F33D61 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DDE2A424F0382800F33D61 /* NewViewController.swift */; };
 		77DF9F1D24ED22CC00DDFD15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DF9F1C24ED22CC00DDFD15 /* AppDelegate.swift */; };
 		77DF9F1F24ED22CC00DDFD15 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77DF9F1E24ED22CC00DDFD15 /* SceneDelegate.swift */; };
@@ -61,17 +61,17 @@
 		594ECAFE6AD7A61E39850EA4 /* Pods-MainPageDomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MainPageDomeTests.release.xcconfig"; path = "Target Support Files/Pods-MainPageDomeTests/Pods-MainPageDomeTests.release.xcconfig"; sourceTree = "<group>"; };
 		5D0CDA02A01E6C031D3613A4 /* Pods_MainPageDomeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MainPageDomeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61438CB9EB52CB2921E1AB3C /* Pods-MainPageDome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MainPageDome.debug.xcconfig"; path = "Target Support Files/Pods-MainPageDome/Pods-MainPageDome.debug.xcconfig"; sourceTree = "<group>"; };
-		77694D9524FC91E5004A299D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		778373FB24FCD3AF00440BAA /* SVWImageViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVWImageViews.swift; sourceTree = "<group>"; };
-		778373FD24FCF87600440BAA /* HomeNewImageViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNewImageViews.swift; sourceTree = "<group>"; };
+		7705918124FE4F0A00F6D056 /* TableViewPlayerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewPlayerProtocol.swift; sourceTree = "<group>"; };
+		7705918324FE569700F6D056 /* HomeVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoTableViewCell.swift; sourceTree = "<group>"; };
+		7705918524FE58A100F6D056 /* HomeVideoCellStands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVideoCellStands.swift; sourceTree = "<group>"; };
+		77694D9524FC91E5004A299D /* HomeSingleColumnViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSingleColumnViewCell.swift; sourceTree = "<group>"; };
 		7787C6E124F49F47000B6307 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		7787C6E324F49FD8000B6307 /* HomeUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserView.swift; sourceTree = "<group>"; };
 		7787C6E524F4A407000B6307 /* HomeLabelsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeLabelsView.swift; sourceTree = "<group>"; };
 		7787C6E724F4A5DD000B6307 /* HomeImageVIews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageVIews.swift; sourceTree = "<group>"; };
 		7787C6E924F50BCC000B6307 /* HomeFuncView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFuncView.swift; sourceTree = "<group>"; };
-		7787C6EB24F50FFF000B6307 /* HomeCellStands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellStands.swift; sourceTree = "<group>"; };
+		7787C6EB24F50FFF000B6307 /* HomeImageCellStands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageCellStands.swift; sourceTree = "<group>"; };
 		77AF791224F8FB8A00EEF372 /* HomeBaseCellStands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBaseCellStands.swift; sourceTree = "<group>"; };
-		77B85F3C24FDF85200976C93 /* HomeImageVIewsDome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeImageVIewsDome.swift; sourceTree = "<group>"; };
 		77DDE2A424F0382800F33D61 /* NewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewViewController.swift; sourceTree = "<group>"; };
 		77DF9F1924ED22CC00DDFD15 /* MainPageDome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MainPageDome.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		77DF9F1C24ED22CC00DDFD15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,13 +133,12 @@
 				7787C6E324F49FD8000B6307 /* HomeUserView.swift */,
 				7787C6E524F4A407000B6307 /* HomeLabelsView.swift */,
 				7787C6E724F4A5DD000B6307 /* HomeImageVIews.swift */,
-				77B85F3C24FDF85200976C93 /* HomeImageVIewsDome.swift */,
-				778373FD24FCF87600440BAA /* HomeNewImageViews.swift */,
-				778373FB24FCD3AF00440BAA /* SVWImageViews.swift */,
 				7787C6E924F50BCC000B6307 /* HomeFuncView.swift */,
-				7787C6EB24F50FFF000B6307 /* HomeCellStands.swift */,
-				77694D9524FC91E5004A299D /* HomeTableViewCell.swift */,
 				77AF791224F8FB8A00EEF372 /* HomeBaseCellStands.swift */,
+				7787C6EB24F50FFF000B6307 /* HomeImageCellStands.swift */,
+				7705918524FE58A100F6D056 /* HomeVideoCellStands.swift */,
+				77694D9524FC91E5004A299D /* HomeSingleColumnViewCell.swift */,
+				7705918324FE569700F6D056 /* HomeVideoTableViewCell.swift */,
 			);
 			path = HomeViews;
 			sourceTree = "<group>";
@@ -175,6 +174,7 @@
 				77DF9F2024ED22CC00DDFD15 /* ViewController.swift */,
 				77DDE2A424F0382800F33D61 /* NewViewController.swift */,
 				7787C6E124F49F47000B6307 /* HomeTableViewController.swift */,
+				7705918124FE4F0A00F6D056 /* TableViewPlayerProtocol.swift */,
 				77AF791124F8FB5200EEF372 /* HomeViews */,
 				77F50CD024EE67300010D978 /* PageMenu.swift */,
 				77F50CD424EF67460010D978 /* PageMenuItemView.swift */,
@@ -251,6 +251,7 @@
 				77DF9F1624ED22CC00DDFD15 /* Frameworks */,
 				77DF9F1724ED22CC00DDFD15 /* Resources */,
 				EDB35614C05FACBB4EF17500 /* [CP] Embed Pods Frameworks */,
+				3C356CAF5EF287DE8D7108F0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,6 +290,7 @@
 				77DF9F3724ED22CF00DDFD15 /* Frameworks */,
 				77DF9F3824ED22CF00DDFD15 /* Resources */,
 				7AD794182D846D43D36D6BD7 /* [CP] Embed Pods Frameworks */,
+				4DB6EA659C5A89AC9C89AA7D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -372,6 +374,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3C356CAF5EF287DE8D7108F0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MainPageDome/Pods-MainPageDome-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MainPageDome/Pods-MainPageDome-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MainPageDome/Pods-MainPageDome-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DB6EA659C5A89AC9C89AA7D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MainPageDome-MainPageDomeUITests/Pods-MainPageDome-MainPageDomeUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MainPageDome-MainPageDomeUITests/Pods-MainPageDome-MainPageDomeUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MainPageDome-MainPageDomeUITests/Pods-MainPageDome-MainPageDomeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		68D9671781182047CBBA4FC4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -480,24 +516,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				77DF9F2124ED22CC00DDFD15 /* ViewController.swift in Sources */,
-				778373FE24FCF87600440BAA /* HomeNewImageViews.swift in Sources */,
 				7787C6E424F49FD8000B6307 /* HomeUserView.swift in Sources */,
 				77F50CCD24EE51020010D978 /* CAPSPageMenu.m in Sources */,
 				77F50CD324EE878B0010D978 /* PageMenuScrollView.swift in Sources */,
 				7787C6E824F4A5DD000B6307 /* HomeImageVIews.swift in Sources */,
 				77F50CD124EE67300010D978 /* PageMenu.swift in Sources */,
-				7787C6EC24F50FFF000B6307 /* HomeCellStands.swift in Sources */,
+				7787C6EC24F50FFF000B6307 /* HomeImageCellStands.swift in Sources */,
 				7787C6E224F49F47000B6307 /* HomeTableViewController.swift in Sources */,
 				7787C6E624F4A407000B6307 /* HomeLabelsView.swift in Sources */,
 				77F50CD524EF67460010D978 /* PageMenuItemView.swift in Sources */,
 				77DF9F1D24ED22CC00DDFD15 /* AppDelegate.swift in Sources */,
 				77AF791324F8FB8A00EEF372 /* HomeBaseCellStands.swift in Sources */,
 				77DDE2A524F0382800F33D61 /* NewViewController.swift in Sources */,
-				778373FC24FCD3AF00440BAA /* SVWImageViews.swift in Sources */,
+				7705918224FE4F0A00F6D056 /* TableViewPlayerProtocol.swift in Sources */,
+				7705918424FE569700F6D056 /* HomeVideoTableViewCell.swift in Sources */,
+				7705918624FE58A100F6D056 /* HomeVideoCellStands.swift in Sources */,
 				7787C6EA24F50BCC000B6307 /* HomeFuncView.swift in Sources */,
-				77694D9624FC91E5004A299D /* HomeTableViewCell.swift in Sources */,
+				77694D9624FC91E5004A299D /* HomeSingleColumnViewCell.swift in Sources */,
 				77F50CBC24EE4A250010D978 /* String+Extension.swift in Sources */,
-				77B85F3D24FDF85200976C93 /* HomeImageVIewsDome.swift in Sources */,
 				77DF9F1F24ED22CC00DDFD15 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

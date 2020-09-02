@@ -26,6 +26,8 @@ PODS:
   - Then (2.6.0)
   - ZFPlayer (4.0.1):
     - ZFPlayer/Core (= 4.0.1)
+  - ZFPlayer/ControlView (4.0.1):
+    - ZFPlayer/Core
   - ZFPlayer/Core (4.0.1)
   - ZFPlayer/ijkplayer (4.0.1):
     - IJKMediaFramework
@@ -38,6 +40,7 @@ DEPENDENCIES:
   - SwifterSwift (= 5.0.0)
   - Then (= 2.6.0)
   - ZFPlayer
+  - ZFPlayer/ControlView
   - ZFPlayer/ijkplayer
 
 SPEC REPOS:
@@ -59,6 +62,6 @@ SPEC CHECKSUMS:
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
   ZFPlayer: f88787c815f7b0801279c42f131a89e2823e669e
 
-PODFILE CHECKSUM: 0ab84daabcbe6370813409d45d5ca7c8e137f1ff
+PODFILE CHECKSUM: 1f2d314ce8f04b1b1c408c69ec89e88b2c9aa38b
 
 COCOAPODS: 1.9.3

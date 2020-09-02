@@ -1,5 +1,5 @@
 //
-//  HomeTableViewCell.swift
+//  HomeImageCellStands.swift
 //  MainPageDome
 //
 //  Created by Wang, bin on 2020/8/25.
@@ -7,29 +7,17 @@
 //
 
 import UIKit
-protocol HomeCellStandsData :HomeBaseCellData,HomeLabelsViewDatas,HomeFuncViewData{
+protocol HomeImageCellStandsData :HomeBaseCellData,HomeLabelsViewDatas,HomeFuncViewData{
     var imageDatas:[HomeImageData]{get}
 }
-extension HomeCellStandsData{
 
-    func cellType()->HomeBaseCellStands.Type{
-        switch self.imageDatas.count {
-        case 1:
-            return HomeTableViewCell.self
-        case 2,4:
-            return HomeDoubleColumnImageCell.self
-        default:
-            return HomeThreeColumnImageCell.self
-        }
-    }
-}
-protocol HomeCellStands:HomeBaseCellStands,HomeLabelsViewProtocol ,HomeFuncViewProtocol ,HomeImageVIewsProtocol{
-
+protocol HomeImageCellStands:HomeBaseCellStands,HomeLabelsViewProtocol ,HomeFuncViewProtocol ,HomeImageVIewsProtocol{
+    var inset:CGFloat {get}
 }
 
-extension HomeCellStands where Self : UITableViewCell{
+extension HomeImageCellStands where Self : UITableViewCell{
     func setData(_ data: HomeBaseCellData) {
-        if let model =  data as? HomeCellStandsData{
+        if let model =  data as? HomeImageCellStandsData{
             labelsView.setDatas(data: model)
             imageViews.setData(data: model.imageDatas)
             funcView.setData(data: model)
@@ -43,11 +31,11 @@ extension HomeCellStands where Self : UITableViewCell{
     }
     func layoutViews(){
         labelsView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(30)
-            make.leading.trailing.equalToSuperview().inset(30)
+            make.top.equalToSuperview().inset(0)
+            make.leading.trailing.equalToSuperview().inset(inset)
         }
         imageViews.snp.makeConstraints { (make) in
-            make.top.equalTo(labelsView.snp.bottom).offset(10)
+            make.top.equalTo(labelsView.snp.bottom).offset(inset)
             make.leading.equalTo(labelsView.snp.leading)
             make.trailing.equalTo(labelsView.snp.trailing)
         }
