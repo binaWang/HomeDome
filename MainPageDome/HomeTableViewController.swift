@@ -81,6 +81,8 @@ class HomeTableViewController: UITableViewController ,TableViewPlayerProtocol{
         tableView.estimatedRowHeight = 50
         tableView.estimatedSectionFooterHeight = 0;
         tableView.estimatedSectionHeaderHeight = 0;
+        tableView.showsVerticalScrollIndicator = false
+        tableView.showsHorizontalScrollIndicator = false
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(cellWithClass: HomeVideoTableViewCell.self)
         tableView.register(cellWithClass: HomeSingleColumnViewCell.self)
@@ -111,7 +113,6 @@ class HomeTableViewController: UITableViewController ,TableViewPlayerProtocol{
             model.imageArray = images
             dataSource.append(model)
         }
-
         print(dataSource)
         initPlayerView()
     }

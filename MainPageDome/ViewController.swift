@@ -36,7 +36,7 @@ class ViewController: UIViewController {
         let controllers =  titles.map{ title -> UIViewController in
             let vc = HomeTableViewController()
             if title == "4444"{
-                vc.tabBarItem.image = UIImage(named: "address")
+                vc.tabBarItem.image = UIImage(named: "7")
             }
             vc.title = title
             vc.view.backgroundColor = UIColor.random()
@@ -44,7 +44,7 @@ class ViewController: UIViewController {
         }
 
         var config  = MenuConfigModel()
-        
+        config.selectionIndicatorColor = MosCommonColor.universal_green ?? UIColor.white
         let custom = PageMenu(controllers: controllers,config: config)
         self.addChild(custom)
         view.addSubview(custom.view)

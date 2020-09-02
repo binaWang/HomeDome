@@ -16,14 +16,17 @@ class PageMenuItemView: UIView,PageMenuItem {
         return .width(50)
     }
     
-    var titleLabel : UILabel = UILabel()
+    var titleLabel : UILabel = UILabel().then{
+        $0.textColor = MosCommonColor.app_assist_content_text
+        $0.font = UIFont.svwPingFangSC_Medium(ofSize:16)
+    }
     var imageView : UIImageView = UIImageView()
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(titleLabel)
-        titleLabel.textColor = .blue
         titleLabel.snp.makeConstraints { (make) in
-            make.top.bottom.equalToSuperview()
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-14)
             make.leading.equalToSuperview().offset(10)
             make.trailing.equalToSuperview().offset(-10)
         }
@@ -48,11 +51,11 @@ class PageMenuItemView: UIView,PageMenuItem {
     }
     
     func normalState() {
-        titleLabel.textColor = .blue
+        titleLabel.textColor = MosCommonColor.app_assist_content_text
     }
     
     func didSelectedState() {
-        titleLabel.textColor = .gray
+        titleLabel.textColor = MosCommonColor.app_assist_dark_black
 
     }
     

@@ -15,15 +15,16 @@ struct  MenuConfigModel {
         case width(_ width:CGFloat)
     }
     var itemMargin : CGFloat = 20
-    var itemHeight : CGFloat = 60
+    var itemHeight : CGFloat = 44
     var itemSeparatorWidth:CGFloat = 30
     var itemClass : PageMenuItem.Type = PageMenuItemView.self
     var itemWidthAutomaticDimension : Bool = true
     var itemWidthForEach : Bool = false
     var addBottomMenuHairline:Bool = false
     var bottomMenuHairlineColor:UIColor = UIColor.white
-    var scrollMenuBackgroundColor:UIColor = UIColor.black
+    var scrollMenuBackgroundColor:UIColor = UIColor.white
     var selectionIndicatorHidden : Bool = false
+    var selectionIndicatorBottomOffSet : CGFloat = -8
     var selectionIndicatorClass : UIView.Type = UIView.self
     var selectionIndicatorColor:UIColor = UIColor.yellow
     var selectionIndicatorHeight: CGFloat = 3
@@ -128,22 +129,22 @@ class PageMenu: UIViewController {
         
         view.addSubview(controllerScrollView)
 
-        if menuItemConfig.addBottomMenuHairline {
-            let  menuBottomHairline = UIView()
-            menuBottomHairline.backgroundColor = menuItemConfig.bottomMenuHairlineColor
-
-
-            menuScrollView.contentView.addSubview(menuBottomHairline)
-            menuBottomHairline.snp.makeConstraints { (make) in
-                make.leading.equalTo(0)
-                make.trailing.equalTo(0)
-                make.bottom.equalTo(0)
-                make.height.equalTo(0.5)
-            }
-        }
+//        if menuItemConfig.addBottomMenuHairline {
+//            let  menuBottomHairline = UIView()
+//            menuBottomHairline.backgroundColor = menuItemConfig.bottomMenuHairlineColor
+//
+//
+//            menuScrollView.contentView.addSubview(menuBottomHairline)
+//            menuBottomHairline.snp.makeConstraints { (make) in
+//                make.leading.equalTo(0)
+//                make.trailing.equalTo(0)
+//                make.bottom.equalTo(0)
+//                make.height.equalTo(0.5)
+//            }
+//        }
         
         menuScrollView.showsVerticalScrollIndicator = false
-        menuScrollView.showsVerticalScrollIndicator = false
+        menuScrollView.showsHorizontalScrollIndicator = false
         
         controllerScrollView.showsHorizontalScrollIndicator = false
         controllerScrollView.showsVerticalScrollIndicator = false
@@ -250,7 +251,7 @@ class PageMenu: UIViewController {
                 make.width.equalTo(menuItemConfig.itemSeparatorWidth)
             }
             make.height.equalTo(menuItemConfig.selectionIndicatorHeight)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(menuItemConfig.selectionIndicatorBottomOffSet)
             make.centerX.equalTo(menuItems[currentPageIndex].snp.centerX)
         }
         selectionIndicatorView = indicator
@@ -390,7 +391,7 @@ class PageMenu: UIViewController {
                     make.width.equalTo(menuItemConfig.itemSeparatorWidth)
                 }
                 make.height.equalTo(menuItemConfig.selectionIndicatorHeight)
-                make.bottom.equalToSuperview()
+                make.bottom.equalToSuperview().offset(menuItemConfig.selectionIndicatorBottomOffSet)
                 make.centerX.equalTo(menuItems[currentPageIndex].snp.centerX)
             }
         }
