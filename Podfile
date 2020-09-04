@@ -12,6 +12,7 @@ target 'MainPageDome' do
     pod 'SwifterSwift', '5.0.0'
     pod 'Kingfisher'
     pod 'ZFPlayer'
+    pod 'MJRefresh', '3.2.0'
     pod 'ZFPlayer/ijkplayer'
     pod 'SDCycleScrollView'
   # Pods for MainPageDome

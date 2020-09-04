@@ -8,10 +8,7 @@
 
 import UIKit
 
-class HomeVideoTableViewCell: UITableViewCell,HomeVideoCellStands {
-    var indexPath: IndexPath?
-    
-    var delegate: HomeCellDelegate?
+class HomeVideoTableViewCell: HomeBaseCell,HomeVideoCellStands {
 
     var inset: CGFloat = 16
     
@@ -23,21 +20,15 @@ class HomeVideoTableViewCell: UITableViewCell,HomeVideoCellStands {
     lazy var funcView: HomeFuncView = HomeFuncView()
     
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-    
-        addViews()
-        layoutViews()
-        
-    }
-    func setData(_ data: HomeBaseCellData, index: IndexPath) {
+    override func setData(_ data: HomeBaseCellData, index: IndexPath) {
+        super.setData(data, index: index)
         if let mode = data as? HomeVideoCellStandsData{
             labelsView.setDatas(data: mode)
             funcView.setData(data: mode)
         }
     }
     
-    func addViews() {
+    override func addViews() {
         contentView.addSubview(labelsView)
         contentView.addSubview(videoImage)
         contentView.addSubview(funcView)
@@ -52,7 +43,7 @@ class HomeVideoTableViewCell: UITableViewCell,HomeVideoCellStands {
             self.delegate?.didSelectAction(action: .playVideo(index: index), object: nil)
         }
     }
-    func layoutViews() {
+    override func layoutViews() {
         labelsView.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(24)
             make.leading.trailing.equalToSuperview().inset(inset)
@@ -70,9 +61,6 @@ class HomeVideoTableViewCell: UITableViewCell,HomeVideoCellStands {
             make.bottom.equalToSuperview().offset(-24).priorityLow()
         }
 
-    }
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 
 }

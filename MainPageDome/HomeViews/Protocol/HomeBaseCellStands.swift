@@ -32,17 +32,20 @@ protocol HomeBaseCellData {
 
 protocol HomeBaseCellStands:UITableViewCell {
     var delegate : HomeCellDelegate?{get set}
-    var indexPath:IndexPath?{get}
+    var indexPath:IndexPath?{get set}
     func setData(_ data: HomeBaseCellData,index:IndexPath)
     func addViews()
     func layoutViews()
 }
 
+extension HomeBaseCellStands where Self : UITableViewCell{
+
+}
 protocol HomeBaseCellActions: NSObjectProtocol {
     
 }
-protocol HomeTotalCellData:HomeImageCellStandsData,HomeVideoCellStandsData {
-    
+protocol HomeTotalCellData:HomeImageCellStandsData,HomeVideoCellStandsData,HomeActiveViewData,HomeRecommendStandData ,HomeADCellData,HomeHeadrViewDatas{
+    var customType:Int {get}
 }
 protocol HomeCellDelegate : NSObjectProtocol {
     func didSelectAction(action:HomeCellActions,object:Any?)
@@ -51,16 +54,50 @@ protocol HomeCellDelegate : NSObjectProtocol {
 extension HomeTotalCellData{
 
     func cellType()->HomeBaseCellStands.Type{
-        if self.videoURL != ""{
+
+        switch self.customType {
+        case 0:
             return HomeVideoTableViewCell.self
-        }
-        switch self.columnDatas.count {
         case 1:
-            return HomeSingleColumnViewCell.self
-        case 2,4:
-            return HomeDoubleColumnImageCell.self
+            let head = Int.random(in: 0...10) > 5
+                switch self.columnDatas.count {
+                case 1:
+                    if head{
+                        return HomeSingleColumnViewCell.self
+
+                    }else{
+                        return HomeUserSingleColumnViewCell.self
+                    }
+                case 2,4:
+                    if head{
+                        return HomeDoubleColumnImageCell.self
+
+                    }else{
+                        return HomeUserDoubleColumnImageCell.self
+                    }
+
+                default:
+                    if head{
+                        return HomeThreeColumnImageCell.self
+
+                    }else{
+                        return HomeUserThreeColumnImageCell.self
+                    }
+
+                }
+        case 2:
+            return HomeADCell.self
+
+        case 3:
+
+            return HomeRecommendCell.self
+        case 4:
+            return HomeActiveCell.self
+
         default:
-            return HomeThreeColumnImageCell.self
+            return HomeVideoTableViewCell.self
+
         }
     }
+
 }

@@ -9,12 +9,16 @@
 import UIKit
 import SwifterSwift
 import ZFPlayer
+import MJRefresh
 struct HomeDataModel {
     struct Images {
         var str:String = ""
+        var title : String = ""
+        
     }
     
 
+    var custom:Int = 0
     var title:String = ""
     var content : String = ""
     var read:String = ""
@@ -24,21 +28,77 @@ struct HomeDataModel {
     var url : String = ""
     var videoimage : String = ""
     var time:String = ""
+    var avtive:String = ""
+    var address:String = ""
+    var state:String = ""
+    var name:String = ""
+    var nameContent:String = ""
+    var follow:String = ""
+    var more:String = ""
 }
 extension HomeDataModel.Images:HomeColumnData{
+    var titleString: String? {
+        return title
+    }
+    
     var imageString: String? {
         return str
 
     }
     
-    var titleString: String? {
-        return "111"
-    }
     
     
     
 }
 extension HomeDataModel:HomeTotalCellData{
+    var userNameString: String? {
+        name
+    }
+    
+    var userImageString: String? {
+        return "1"
+    }
+        
+    var userContentString: String? {
+        nameContent
+    }
+    
+    var isfollow: Bool? {
+        follow == "1"
+    }
+    
+    var userViewImageStr: String? {
+        return "4"
+    }
+    
+    var activeImage: String? {
+        return "1"
+    }
+    
+    var customType: Int {
+        return custom
+    }
+    
+    var activeTitleString: String? {
+        avtive
+    }
+    
+    var addressString: String? {
+        address
+    }
+    
+    var stateType: String? {
+        state
+    }
+    
+    var moreTitle: String? {
+        more
+    }
+    
+    var showMoreButton: Bool? {
+        self.imageArray.count > 4
+    }
+    
     var columnDatas: [HomeColumnData] {
         imageArray
     }
@@ -83,6 +143,7 @@ class HomeTableViewController: UITableViewController ,TableViewPlayerProtocol{
     static let kPlayerViewTag = 10086
     lazy var controlView : ZFPlayerControlView = ZFPlayerControlView()
     var player :  ZFPlayerController = ZFPlayerController()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.estimatedRowHeight = 50
@@ -95,19 +156,41 @@ class HomeTableViewController: UITableViewController ,TableViewPlayerProtocol{
         tableView.register(cellWithClass: HomeSingleColumnViewCell.self)
         tableView.register(cellWithClass: HomeDoubleColumnImageCell.self)
         tableView.register(cellWithClass: HomeThreeColumnImageCell.self)
+        tableView.register(cellWithClass: HomeADCell.self)
+        tableView.register(cellWithClass: HomeActiveCell.self)
+        tableView.register(cellWithClass: HomeRecommendCell.self)
+        tableView.register(cellWithClass: HomeUserSingleColumnViewCell.self)
+        tableView.register(cellWithClass: HomeUserDoubleColumnImageCell.self)
+        tableView.register(cellWithClass: HomeUserThreeColumnImageCell.self)
+        tableView.mj_header = MJRefreshNormalHeader(refreshingTarget: self, refreshingAction: #selector(beginData))
+        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(requestData))
         if #available(iOS 11.0, * ){
             tableView.contentInsetAdjustmentBehavior = .never
         } else {
             self.automaticallyAdjustsScrollViewInsets = false;
         }
-        for i  in 0...10{
+
+        initPlayerView()
+        
+    }
+    func creataData( data:@escaping (([HomeBaseCellData])->())){
+        DispatchQueue.global().async {
+            var array : [HomeBaseCellData] = []
+            for i  in 0...10{
             var model =  HomeDataModel()
             model.title = String.random(ofLength: 89)
             model.content = String.random(ofLength: 300)
+            model.more = String.random(ofLength: 300)
             model.collection = "\(Int.random(in: 0...999))"
             model.like = "\(Int.random(in: 0...999))"
             model.read = "\(Int.random(in: 0...999))"
+            model.custom = Int.random(in: 0...5)
             model.time = "\(Int.random(in: 0...10))分钟前"
+            model.address = String.random(ofLength: 89)
+            model.avtive =  String.random(ofLength: 89)
+            model.name = String.random(ofLength: 30)
+            model.nameContent = String.random(ofLength: 50)
+
             var images:[HomeDataModel.Images] = []
             for _ in 0...Int.random(in: 0...9){
                 var image =  HomeDataModel.Images()
@@ -117,13 +200,33 @@ class HomeTableViewController: UITableViewController ,TableViewPlayerProtocol{
             if i % 3 == 0{
                 model.url = "wewe"
             }
-            model.imageArray = images
-            dataSource.append(model)
+                model.imageArray = images
+                array.append(model)
+            }
+            DispatchQueue.main.async {
+                data(array)
+            }
         }
-        print(dataSource)
-        initPlayerView()
     }
+    @objc func beginData(){
+        tableView.mj_header.beginRefreshing()
+        creataData { [weak self](data) in
+            self?.dataSource =  data
+            self?.tableView.reloadData()
+            self?.tableView.mj_header.endRefreshing()
 
+        }
+    }
+    @objc func requestData(){
+        tableView.mj_footer.beginRefreshing()
+        creataData { [weak self](data) in
+            self?.dataSource.append(contentsOf: data)
+            self?.tableView.reloadData()
+            self?.tableView.mj_footer.endRefreshing()
+
+        }
+
+    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.player.isViewControllerDisappear = false

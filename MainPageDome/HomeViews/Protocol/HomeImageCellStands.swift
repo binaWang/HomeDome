@@ -16,40 +16,6 @@ protocol HomeImageCellStands:HomeBaseCellStands,HomeLabelsViewProtocol ,HomeFunc
 }
 
 extension HomeImageCellStands where Self : UITableViewCell{
-    func setData(_ data: HomeBaseCellData, index: IndexPath) {
-        if let model =  data as? HomeImageCellStandsData{
-            labelsView.setDatas(data: model)
-            columnView.setData(data: model.columnDatas)
-            funcView.setData(data: model)
-        }
-    }
-
-    func addViews(){
-        contentView.addSubview(labelsView)
-        contentView.addSubview(columnView)
-        contentView.addSubview(funcView)
-        labelsView.delegate = self 
-        columnView.delegate = self
-        funcView.delegate = self
-    }
-    func layoutViews(){
-        labelsView.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(24)
-            make.leading.trailing.equalToSuperview().inset(inset)
-        }
-        columnView.snp.makeConstraints { (make) in
-            make.top.equalTo(labelsView.snp.bottom).offset(12)
-            make.leading.equalTo(labelsView.snp.leading)
-            make.trailing.equalTo(labelsView.snp.trailing)
-        }
-        funcView.snp.makeConstraints { (make) in
-            make.top.equalTo(columnView.snp.bottom).offset(14)
-            make.leading.equalTo(labelsView.snp.leading)
-            make.trailing.equalTo(labelsView.snp.trailing)
-            make.bottom.equalToSuperview().offset(-24).priorityLow()
-        }
-
-    }
 
 }
 

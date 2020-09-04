@@ -44,7 +44,7 @@ protocol HomeColumnSubView:UIView  {
 class HomeColumnVIews: UIView {
 
     weak var delegate : HomeColumnVIewsActionDelegate?
-    private  var layout :LayoutManager = LayoutManager(column: .single, maxWidth: 0)
+    private  var layout :LayoutManager = LayoutManager(column: .single, maxWidth: 0, scale: 1)
     private var itemType: HomeColumnSubView.Type?
     private static let verticalMax:Int = 3
     private var images : [String] = []
@@ -53,11 +53,11 @@ class HomeColumnVIews: UIView {
     private var dataSource: [HomeColumnData] = []
     private var stackHorizontalViews: [UIStackView] = []
     
-    convenience init(maxWidth:CGFloat ,colum:  Column,  itemType:HomeColumnSubView.Type) {
+    convenience init(maxWidth:CGFloat ,colum:  Column,  itemType:HomeColumnSubView.Type,scale:CGFloat = 1) {
         self.init()
 
         
-        layout = LayoutManager(column: colum, maxWidth: maxWidth)
+        layout = LayoutManager(column: colum, maxWidth: maxWidth, scale: scale)
 
         self.itemType = itemType
 
@@ -87,9 +87,11 @@ class HomeColumnVIews: UIView {
                         make.top.equalTo(top).offset(layout.imageMargin)
                     }
                     make.height.equalTo(height)
+                    stack.isHidden = false
                 }else{
                     make.top.equalTo(top)
                     make.height.equalTo(0)
+                    stack.isHidden = true
                 }
             }
             top = stack.snp.bottom
@@ -160,18 +162,6 @@ extension HomeColumnVIews{
         case single = 1
         case double = 2
         case three = 3
-        func scale()->CGFloat{
-            var height : CGFloat
-            switch self {
-            case .single:
-                height = 193.0/343.0
-            case .double:
-                height = 1
-            case .three:
-                height = 1
-            }
-            return height
-        }
     }
 
     struct LayoutManager {
@@ -182,7 +172,7 @@ extension HomeColumnVIews{
         
         /// 元素间距离
         var imageMargin: CGFloat = 5
-        
+
         /// 实际横向图片数量
         private(set) var imageHorizontalCount: Int = 0
         
@@ -195,9 +185,13 @@ extension HomeColumnVIews{
         private(set) var maxWidth: CGFloat = 0
 
         
-        init(column:Column , maxWidth:CGFloat )  {
+        /// 图片宽高比
+        var scale: CGFloat = 1
+
+        init(column:Column , maxWidth:CGFloat,scale:CGFloat )  {
             imageHorizontalCount = column.rawValue
             self.column = column
+            self.scale = scale
             self.maxWidth = maxWidth
         }
         func numberOfRow(count:Int)->Int{
@@ -210,7 +204,7 @@ extension HomeColumnVIews{
             let marginWidth : CGFloat = ( columnValue - 1) * imageMargin
             
             let imageWidth : CGFloat = (maxWidth - marginWidth) / columnValue
-            let imageHeight : CGFloat = imageWidth * column.scale()
+            let imageHeight : CGFloat = imageWidth * scale
             return imageHeight
         }
         

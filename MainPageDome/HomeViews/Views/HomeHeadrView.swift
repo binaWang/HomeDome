@@ -11,7 +11,6 @@ import Kingfisher
 protocol HomeHeadrViewDatas {
     var userNameString:String?{get}
     var userImageString:String?{get}
-    var userString:String?{get}
     var userContentString:String?{get}
     var isfollow:Bool?{get}
 }
@@ -81,6 +80,7 @@ class HomeHeadrView: UIView {
     private func configSubViws(){
         addSubview(imageView)
         imageView.addSubview(imageTag)
+        imageView.backgroundColor = UIColor.random
         addSubview(nameLabel)
         addSubview(contentLabel)
         addSubview(nameTagImageView)
@@ -103,18 +103,18 @@ class HomeHeadrView: UIView {
         nameLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(imageView.snp.trailing).offset(8)
             make.bottom.equalTo(imageView.snp.bottom).offset(-imageWidth / 2.0)
-            make.width.lessThanOrEqualTo(followButton.snp.leading).offset(50)
+            make.trailing.lessThanOrEqualTo(followButton.snp.leading).offset(-10)
         }
         nameTagImageView.snp.makeConstraints { (make) in
             make.leading.equalTo(nameLabel.snp.trailing).offset(4)
             make.size.equalTo(CGSize(width: 40, height: 12))
-            make.centerY.equalTo(imageView.snp.centerY).offset(0)
+            make.centerY.equalTo(nameLabel.snp.centerY).offset(0)
         }
 
         contentLabel.snp.makeConstraints { (make) in
             make.leading.equalTo(nameLabel.snp.leading).offset(0)
             make.bottom.equalTo(imageView.snp.bottom).offset(0)
-            make.width.lessThanOrEqualTo(followButton.snp.leading).offset(5)
+            make.trailing.lessThanOrEqualTo(followButton.snp.leading).offset(-10)
         }
         followButton.cornerRadius = 14
         followButton.snp.makeConstraints { (make) in

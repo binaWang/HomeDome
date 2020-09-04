@@ -14,16 +14,13 @@ class ConsultantView: UIView {
         case full
         case ratio(_  value:CGFloat)
     }
-   private  var imageRatio : RatioType = .full
+    var imageRatio : RatioType = .full
     private  var titleMargin : CGFloat = 12
-    private  var titleRatio : RatioType = .ratio(0.5)
+    var titleRatio : RatioType = .full
     private  var imageView:UIImageView = UIImageView()
     private  var titleLabel:UILabel = UILabel()
-    private  var shadow:Bool = false
-    override init(frame: CGRect) {
-        super.init(frame:frame)
-        config()
-    }
+    private  var shadow:Bool = true
+
     convenience init(imageRatio:RatioType ,titleRatio:RatioType , titleMargin:CGFloat = 12 ,shadow:Bool = false) {
         self.init(frame:CGRect.zero)
         self.imageRatio = imageRatio
@@ -32,7 +29,10 @@ class ConsultantView: UIView {
         config()
 
     }
-    
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+        config()
+    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -56,7 +56,7 @@ class ConsultantView: UIView {
                 make.top.equalToSuperview()
                 make.bottom.equalToSuperview()
             case .ratio(let ratio):
-                make.height.equalToSuperview().multipliedBy(ratio)
+                make.height.equalTo(titleLabel.snp.width).multipliedBy(ratio)
                 make.bottom.equalToSuperview()
             }
 
@@ -87,6 +87,15 @@ extension ConsultantView:HomeColumnSubView  {
         
     
 }
-//func setData(data: HomeImageData?) {
-//    <#code#>
-//}
+
+class ConsultantRatioView: ConsultantView {
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+        self.imageRatio = .ratio(0.6)
+        self.titleRatio = .ratio(0.34)
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+}
