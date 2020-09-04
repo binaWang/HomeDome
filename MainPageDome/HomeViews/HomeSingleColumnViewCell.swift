@@ -10,19 +10,19 @@ import UIKit
 
 class HomeSingleColumnViewCell: UITableViewCell ,HomeImageCellStands{
     
-    var delegate: HomeTotalCellDelegate?
+    var indexPath: IndexPath?
     
+    var delegate: HomeCellDelegate?
     
     var inset: CGFloat = 16
     
-    var column:HomeImageVIews.Column {
+    var column:HomeColumnVIews.Column {
         get{
             return .single
         }
     }
     
-    lazy var imageViews: HomeImageVIews = HomeImageVIews(maxWidth: kScreenWith  -  inset * 2, colum: column)
-
+    lazy var columnView: HomeColumnVIews = HomeColumnVIews(maxWidth: kScreenWith  -  inset * 2, colum: column, itemType: ConsultantView.self)
     lazy var labelsView: HomeLabelsView =  HomeLabelsView()
     
     lazy var funcView: HomeFuncView = HomeFuncView()
@@ -41,14 +41,14 @@ class HomeSingleColumnViewCell: UITableViewCell ,HomeImageCellStands{
     
 }
 class  HomeDoubleColumnImageCell: HomeSingleColumnViewCell {
-    override var column:HomeImageVIews.Column {
+    override var column:HomeColumnVIews.Column {
             return .double
     }
 
 }
 
 class  HomeThreeColumnImageCell: HomeSingleColumnViewCell {
-    override var column:HomeImageVIews.Column {
+    override var column:HomeColumnVIews.Column {
             return .three
     }
 

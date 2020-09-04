@@ -1,5 +1,5 @@
 //
-//  HomeImageVIews.swift
+//  HomeColumnVIews.swift
 //  MainPageDome
 //
 //  Created by Wang, bin on 2020/8/25.
@@ -9,62 +9,69 @@
 import UIKit
 import SwifterSwift
 import SnapKit
-protocol HomeImageData {
-    var image:String? {get}
+protocol HomeColumnData {
+    var imageString:String? {get}
+    var titleString:String? {get}
 }
-protocol HomeImageVIewsProtocol : UITableViewCell {
-    var imageViews: HomeImageVIews{get}
+protocol HomeColumnVIewsProtocol : UITableViewCell {
+    var columnView: HomeColumnVIews{get}
 //    func addHomeImageVIewsView(top:SnapKit.ConstraintItem,offset:CGFloat)-> SnapKit.ConstraintItem
 
 }
 
-extension HomeImageVIewsProtocol where Self : UITableViewCell{
+extension HomeColumnVIewsProtocol where Self : UITableViewCell{
 
 }
 
-protocol HomeImageVIewsActionDelegate:NSObjectProtocol  {
-    func didTapImages(index: Int, model:HomeImageData)
+protocol HomeColumnVIewsActionDelegate:NSObjectProtocol  {
+    func didTapitems(index: Int, model:HomeColumnData)
 }
-extension HomeImageVIewsActionDelegate where Self : HomeImageCellStands {
-    func didTapImages(index: Int, model:HomeImageData){
-        self.delegate?.didTapImageView(index: index, model: model)
+extension HomeColumnVIewsActionDelegate where Self : HomeImageCellStands {
+    func didTapitems(index: Int, model:HomeColumnData){
+        self.delegate?.didSelectAction(action: .columnItem(index: self.indexPath, itemIndex: index, data: model), object: nil)
     }
 }
-extension HomeImageVIewsActionDelegate where Self : HomeVideoCellStands {
-    func didTapImages(index: Int, model:HomeImageData){
-        self.delegate?.didTapImageView(index: index, model: model)
+extension HomeColumnVIewsActionDelegate where Self : HomeVideoCellStands {
+    func didTapitems(index: Int, model:HomeColumnData){
+        self.delegate?.didSelectAction(action: .columnItem(index: self.indexPath, itemIndex: index, data: model), object: nil)
     }
 }
+protocol HomeColumnSubView:UIView  {
+    func setData(data:HomeColumnData?)
+}
 
-class HomeImageVIews: UIView {
 
+class HomeColumnVIews: UIView {
 
-    weak var delegate : HomeImageVIewsActionDelegate?
+    weak var delegate : HomeColumnVIewsActionDelegate?
     private  var layout :LayoutManager = LayoutManager(column: .single, maxWidth: 0)
+    private var itemType: HomeColumnSubView.Type?
     private static let verticalMax:Int = 3
     private var images : [String] = []
-    private var imageViews : [UIImageView] = []
+    private var items : [HomeColumnSubView] = []
     private var horizontalCount: Int = 1
-    private var dataSource: [HomeImageData] = []
+    private var dataSource: [HomeColumnData] = []
     private var stackHorizontalViews: [UIStackView] = []
-    convenience init(maxWidth:CGFloat ,colum:  Column) {
+    
+    convenience init(maxWidth:CGFloat ,colum:  Column,  itemType:HomeColumnSubView.Type) {
         self.init()
 
+        
         layout = LayoutManager(column: colum, maxWidth: maxWidth)
 
+        self.itemType = itemType
 
         configStackViews()
     }
     
-    func setData(data:[HomeImageData]){
+    func setData(data:[HomeColumnData]){
 
-        for (index,imageView) in imageViews.enumerated() {
+        for (index,imageView) in items.enumerated() {
             if index < data.count ,
-                index >= 0 ,
-                let imageStr = data[index].image{
-                imageView.image = UIImage(named:imageStr)
+                index >= 0 {
+                imageView.setData(data: data[index])
             }else{
-                imageView.image = nil
+                imageView.setData(data: nil)
             }
         }
         dataSource = data
@@ -101,13 +108,11 @@ class HomeImageVIews: UIView {
             stack.distribution = .fillEqually
             
             for _ in 0..<layout.imageHorizontalCount {
-                let imageView = UIImageView()
-                imageView.contentMode = .scaleToFill
-                imageView.isUserInteractionEnabled = true
-                imageView.cornerRadius = 2
-                imageView.backgroundColor = UIColor.random
-                stack.addArrangedSubview(imageView)
-                imageViews.append(imageView)
+                if let type = itemType{
+                    let item = type.init()
+                    stack.addArrangedSubview(item)
+                    items.append(item)
+                }
             }
             
             stackHorizontalViews.append(stack)
@@ -141,16 +146,16 @@ class HomeImageVIews: UIView {
         let tappedPoint = gestureRecognizer.location(in: self)
         
         if let imageView =   self.hitTest(tappedPoint, with: nil) as? UIImageView{
-            let index = (imageViews as NSArray).index(of: imageView)
+            let index = (items as NSArray).index(of: imageView)
             guard  index < dataSource.count , index > 0 else {return}
-            self.delegate?.didTapImages(index: index,model: dataSource[index])
+            self.delegate?.didTapitems(index: index,model: dataSource[index])
         }
 
     }
     
 
 }
-extension HomeImageVIews{
+extension HomeColumnVIews{
     enum Column:Int {
         case single = 1
         case double = 2
@@ -211,4 +216,9 @@ extension HomeImageVIews{
         
     }
 
+}
+extension HomeColumnVIews{
+    struct ItemManager {
+        var itemType: HomeColumnSubView.Type?
+    }
 }

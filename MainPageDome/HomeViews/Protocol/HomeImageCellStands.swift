@@ -8,10 +8,10 @@
 
 import UIKit
 protocol HomeImageCellStandsData :HomeBaseCellData,HomeLabelsViewDatas,HomeFuncViewData{
-    var imageDatas:[HomeImageData]{get}
+    var columnDatas:[HomeColumnData]{get}
 }
 
-protocol HomeImageCellStands:HomeBaseCellStands,HomeLabelsViewProtocol ,HomeFuncViewProtocol ,HomeImageVIewsProtocol,HomeLabelsViewDelegate,HomeImageVIewsActionDelegate,HomeFuncViewDelegate{
+protocol HomeImageCellStands:HomeBaseCellStands,HomeLabelsViewProtocol ,HomeFuncViewProtocol ,HomeColumnVIewsProtocol,HomeLabelsViewDelegate,HomeColumnVIewsActionDelegate,HomeFuncViewDelegate{
     var inset:CGFloat {get}
 }
 
@@ -19,17 +19,17 @@ extension HomeImageCellStands where Self : UITableViewCell{
     func setData(_ data: HomeBaseCellData, index: IndexPath) {
         if let model =  data as? HomeImageCellStandsData{
             labelsView.setDatas(data: model)
-            imageViews.setData(data: model.imageDatas)
+            columnView.setData(data: model.columnDatas)
             funcView.setData(data: model)
         }
     }
 
     func addViews(){
         contentView.addSubview(labelsView)
-        contentView.addSubview(imageViews)
+        contentView.addSubview(columnView)
         contentView.addSubview(funcView)
         labelsView.delegate = self 
-        imageViews.delegate = self
+        columnView.delegate = self
         funcView.delegate = self
     }
     func layoutViews(){
@@ -37,13 +37,13 @@ extension HomeImageCellStands where Self : UITableViewCell{
             make.top.equalToSuperview().offset(24)
             make.leading.trailing.equalToSuperview().inset(inset)
         }
-        imageViews.snp.makeConstraints { (make) in
+        columnView.snp.makeConstraints { (make) in
             make.top.equalTo(labelsView.snp.bottom).offset(12)
             make.leading.equalTo(labelsView.snp.leading)
             make.trailing.equalTo(labelsView.snp.trailing)
         }
         funcView.snp.makeConstraints { (make) in
-            make.top.equalTo(imageViews.snp.bottom).offset(14)
+            make.top.equalTo(columnView.snp.bottom).offset(14)
             make.leading.equalTo(labelsView.snp.leading)
             make.trailing.equalTo(labelsView.snp.trailing)
             make.bottom.equalToSuperview().offset(-24).priorityLow()

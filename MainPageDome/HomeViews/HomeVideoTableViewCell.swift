@@ -9,10 +9,10 @@
 import UIKit
 
 class HomeVideoTableViewCell: UITableViewCell,HomeVideoCellStands {
-    var delegate: HomeTotalCellDelegate?
-
-    var index : IndexPath?
+    var indexPath: IndexPath?
     
+    var delegate: HomeCellDelegate?
+
     var inset: CGFloat = 16
     
     private var videoImage:UIImageView = UIImageView()
@@ -48,8 +48,8 @@ class HomeVideoTableViewCell: UITableViewCell,HomeVideoCellStands {
         videoImage.addGestureRecognizer(tap)
     }
     @objc private func playClick(){
-        if let index  = self.index{
-            self.delegate?.playVideoAt(index: index)
+        if let index  = self.indexPath{
+            self.delegate?.didSelectAction(action: .playVideo(index: index), object: nil)
         }
     }
     func layoutViews() {

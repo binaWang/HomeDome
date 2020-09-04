@@ -10,8 +10,10 @@ target 'MainPageDome' do
     pod 'RxCocoa', '4.5.0'
     pod 'RxSwift'
     pod 'SwifterSwift', '5.0.0'
+    pod 'Kingfisher'
     pod 'ZFPlayer'
     pod 'ZFPlayer/ijkplayer'
+    pod 'SDCycleScrollView'
   # Pods for MainPageDome
     pod 'ZFPlayer/ControlView'
   target 'MainPageDomeTests' do

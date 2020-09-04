@@ -11,6 +11,8 @@ import UIKit
 var kScreenWith: CGFloat {
     return UIScreen.main.bounds.width < UIScreen.main.bounds.height ? UIScreen.main.bounds.width : UIScreen.main.bounds.height
 }
+///初始化 coder 空值警告
+let INIT_CODER_NIL_WARRNING = "init(coder:) has not been implemented"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

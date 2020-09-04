@@ -7,37 +7,54 @@
 //
 
 import UIKit
+/// HomeCell点击事件
+enum HomeCellActions {
+    // 列的cell
+    case columnItem(index:IndexPath?,itemIndex:Int,data:HomeColumnData)
+    /// 报名
+    case signUp(index:IndexPath?)
+    /// 更多
+    case moreInfo(index:IndexPath?)
+    /// 关注
+    case follow(index:IndexPath?)
+    /// 播放视频
+    case playVideo(index:IndexPath?)
+    /// 点击标签
+    case textTagTap(index:IndexPath?,tag:String)
+    /// 下边三个关注等按钮
+    case funcAcitom(index:IndexPath?,type:HomeFuncView.TapType)
 
+}
 
 protocol HomeBaseCellData {
     func cellType()->HomeBaseCellStands.Type
 }
 
 protocol HomeBaseCellStands:UITableViewCell {
-    var delegate : HomeTotalCellDelegate?{get set}
+    var delegate : HomeCellDelegate?{get set}
+    var indexPath:IndexPath?{get}
     func setData(_ data: HomeBaseCellData,index:IndexPath)
     func addViews()
     func layoutViews()
 }
+
 protocol HomeBaseCellActions: NSObjectProtocol {
     
 }
 protocol HomeTotalCellData:HomeImageCellStandsData,HomeVideoCellStandsData {
     
 }
-protocol HomeTotalCellDelegate : NSObjectProtocol {
-    func didTapTagLabel(text:String)
-    func didTapImageView(index:Int,model:HomeImageData)
-    func didTapFuncView(type:HomeFuncView.TapType)
-    func playVideoAt(index:IndexPath )
+protocol HomeCellDelegate : NSObjectProtocol {
+    func didSelectAction(action:HomeCellActions,object:Any?)
 }
+
 extension HomeTotalCellData{
 
     func cellType()->HomeBaseCellStands.Type{
         if self.videoURL != ""{
             return HomeVideoTableViewCell.self
         }
-        switch self.imageDatas.count {
+        switch self.columnDatas.count {
         case 1:
             return HomeSingleColumnViewCell.self
         case 2,4:

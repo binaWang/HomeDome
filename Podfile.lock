@@ -1,8 +1,16 @@
 PODS:
   - IJKMediaFramework (0.1.5)
+  - Kingfisher (5.15.0):
+    - Kingfisher/Core (= 5.15.0)
+  - Kingfisher/Core (5.15.0)
   - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxSwift (4.5.0)
+  - SDCycleScrollView (1.80):
+    - SDWebImage (>= 5.0.0)
+  - SDWebImage (5.9.0):
+    - SDWebImage/Core (= 5.9.0)
+  - SDWebImage/Core (5.9.0)
   - SnapKit (4.2.0)
   - SwifterSwift (5.0.0):
     - SwifterSwift/AppKit (= 5.0.0)
@@ -34,8 +42,10 @@ PODS:
     - ZFPlayer/Core
 
 DEPENDENCIES:
+  - Kingfisher
   - RxCocoa (= 4.5.0)
   - RxSwift
+  - SDCycleScrollView
   - SnapKit (= 4.2.0)
   - SwifterSwift (= 5.0.0)
   - Then (= 2.6.0)
@@ -46,8 +56,11 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - IJKMediaFramework
+    - Kingfisher
     - RxCocoa
     - RxSwift
+    - SDCycleScrollView
+    - SDWebImage
     - SnapKit
     - SwifterSwift
     - Then
@@ -55,13 +68,16 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   IJKMediaFramework: f1119f6324c96bc4654f3045a5beaa95ba0596c0
+  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  SDCycleScrollView: b3c9a5ed840c771c4938978174c7c9d9feefeb96
+  SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwifterSwift: 96f90594b370802f01647c2b1229c74a84ffafee
   Then: 90cd104fd951cec1980a03f57704ad8f784d4d79
   ZFPlayer: f88787c815f7b0801279c42f131a89e2823e669e
 
-PODFILE CHECKSUM: 1f2d314ce8f04b1b1c408c69ec89e88b2c9aa38b
+PODFILE CHECKSUM: da32795b0790d779e563fd4b26eed4eecbb24ff2
 
 COCOAPODS: 1.9.3

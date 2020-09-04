@@ -31,7 +31,6 @@ protocol HomeLabelsViewDelegate: NSObjectProtocol {
 
 extension HomeLabelsViewDelegate   where Self :HomeImageCellStands{
     func didTapLabel(text:String){
-        self.delegate?.didTapTagLabel(text: text)
     }
 }
 

@@ -25,14 +25,24 @@ struct HomeDataModel {
     var videoimage : String = ""
     var time:String = ""
 }
-extension HomeDataModel.Images:HomeImageData{
-    var image: String? {
+extension HomeDataModel.Images:HomeColumnData{
+    var imageString: String? {
         return str
+
     }
+    
+    var titleString: String? {
+        return "111"
+    }
+    
     
     
 }
 extension HomeDataModel:HomeTotalCellData{
+    var columnDatas: [HomeColumnData] {
+        imageArray
+    }
+    
     var timeString: String? {
         time
     }
@@ -45,9 +55,6 @@ extension HomeDataModel:HomeTotalCellData{
         url
     }
     
-    var imageDatas: [HomeImageData] {
-        return imageArray
-    }
     
     var titleText: String? {
         return title
@@ -163,22 +170,11 @@ extension HomeTableViewController{
         
     }
 }
-extension HomeTableViewController: HomeTotalCellDelegate{
-    func playVideoAt(index: IndexPath) {
-
-    }
-    
-    func didTapTagLabel(text: String) {
+extension HomeTableViewController: HomeCellDelegate{
+    func didSelectAction(action: HomeCellActions, object: Any?) {
         
     }
     
-    func didTapImageView(index: Int, model: HomeImageData) {
-        
-    }
-    
-    func didTapFuncView(type: HomeFuncView.TapType) {
-        
-    }
     
     
     

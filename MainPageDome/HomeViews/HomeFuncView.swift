@@ -30,7 +30,7 @@ protocol HomeFuncViewDelegate: NSObjectProtocol {
 
 extension HomeFuncViewDelegate where Self : HomeImageCellStands{
     func didTapFuncViewAction(type:HomeFuncView.TapType){
-        self.delegate?.didTapFuncView(type: type)
+        self.delegate?.didSelectAction(action: .funcAcitom(index: indexPath, type: type), object: nil)
     }
 }
 class HomeFuncView: UIView {
